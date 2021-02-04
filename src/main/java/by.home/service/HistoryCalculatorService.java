@@ -1,12 +1,7 @@
 package by.home.service;
 
-import by.home.configuration.WebConfiguration;
 import by.home.storage.HistoryCalculatorStorage;
-import com.sun.xml.internal.ws.developer.SchemaValidation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

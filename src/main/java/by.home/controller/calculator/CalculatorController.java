@@ -1,11 +1,8 @@
 package by.home.controller.calculator;
 
-import by.home.configuration.WebConfiguration;
 import by.home.service.CalculatorService;
 import by.home.service.HistoryCalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
