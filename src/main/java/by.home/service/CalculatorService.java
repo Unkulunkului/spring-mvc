@@ -1,45 +1,67 @@
 package by.home.service;
 
-import org.springframework.stereotype.Component;
+import by.home.entity.Operation;
+import by.home.storage.HistoryCalculatorStorage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Component
+import java.util.List;
+
+
+@Service
 public class CalculatorService {
-    private float sum(float fNum, float sNum){
-        float result = fNum + sNum;
+
+    @Autowired
+    private HistoryCalculatorStorage historyCalculatorStorage;
+
+    private double sum(double fNum, double sNum){
+        double result = fNum + sNum;
         return result;
     }
 
-    private float mult(float fNum, float sNum){
-        float result = fNum * sNum;
+    private double mult(double fNum, double sNum){
+        double result = fNum * sNum;
         return result;
     }
 
-    private float div(float fNum, float sNum){
-        float result = fNum / sNum;
+    private double div(double fNum, double sNum){
+        double result = fNum / sNum;
         return result;
     }
 
-    private float diff(float fNum, float sNum){
-        float result = fNum - sNum;
+    private double diff(double fNum, double sNum){
+        double result = fNum - sNum;
         return result;
     }
 
-    public String getResult(float fNum, float sNum, String oper){
-        switch (oper){
+    public Operation getResult(Operation oper){
+        switch (oper.getOper()){
             case "sum":
-                return fNum+" + "+sNum+" = "+sum(fNum, sNum);
+                oper.setResult(sum(oper.getFNum(), oper.getSNum()));
+                break;
             case "div":
-                if(sNum != 0){
-                    return fNum+" / "+sNum+" = "+div(fNum, sNum);
-                }else {
-                    return "Divided by zero!";
-                }
+                oper.setResult(div(oper.getFNum(), oper.getSNum()));
+                break;
             case "mult":
-                return fNum+" * "+sNum+" = "+mult(fNum, sNum);
+                oper.setResult(mult(oper.getFNum(), oper.getSNum()));
+                break;
             case "diff":
-                return fNum+" - "+sNum+" = "+diff(fNum, sNum);
-            default:
-                return "Wrong operation!";
+                oper.setResult(diff(oper.getFNum(), oper.getSNum()));
+                break;
         }
+        save(oper);
+        return oper;
+    }
+
+    public List<Operation> getOperationList(){
+        return historyCalculatorStorage.getHistory();
+    }
+
+    private void save(Operation oper){
+        historyCalculatorStorage.saveOperation(oper);
+    }
+
+    public void clear(){
+        historyCalculatorStorage.clearHistory();
     }
 }

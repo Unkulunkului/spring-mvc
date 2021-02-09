@@ -6,11 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Home</title>
 </head>
 <body>
-<h1>HELLO, IT'S A MAIN PAGES!!!!!</h1>
+<h1>HELLO, <c:out value="${sessionScope.user.name}" default="guest"/>. IT'S A MAIN PAGE!!!!!</h1>
+<a href="/user/registration">Sing up</a>
+<br>
+<a href="/user/authorization">Sing in</a>
 </body>
 </html>
