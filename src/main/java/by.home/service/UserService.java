@@ -26,6 +26,6 @@ public class UserService {
     }
 
     public boolean checkPassword(User user, String password){
-        return inMemoryUserStorage.isRightPassword(user, password);
+        return user.getPassword().equals(password);
     }
 }

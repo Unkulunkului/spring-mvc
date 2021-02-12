@@ -28,8 +28,4 @@ public class InMemoryUserStorage {
         }
         return null;
     }
-
-    public boolean isRightPassword(User user, String password){
-        return user.getPassword().equals(password);
-    }
 }
