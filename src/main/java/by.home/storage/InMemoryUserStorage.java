@@ -1,6 +1,7 @@
 package by.home.storage;
 
 import by.home.entity.User;
+import by.home.service.exception.UserNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,13 +12,13 @@ public class InMemoryUserStorage {
     private static int id = 0;
     private List<User> userList = new ArrayList<>();
 
-    public boolean save (User user){
-        if(!userList.contains(user)){
+    public void save (User user){
+        if(!contains(user)){
             user.setId(id++);
             userList.add(user);
-            return true;
+        }else {
+            throw new UserNotFoundException("User is already exist");
         }
-        return false;
     }
 
     public User getByLogin(String login){
@@ -26,6 +27,15 @@ public class InMemoryUserStorage {
                 return user;
             }
         }
-        return null;
+        throw new UserNotFoundException("User not found!");
+    }
+
+    public boolean contains(User user){
+        for (User u : userList) {
+            if(u.equals(user)){
+                return true;
+            }
+        }
+        return false;
     }
 }

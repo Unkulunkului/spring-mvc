@@ -1,6 +1,7 @@
 package by.home.controller;
 
 import by.home.entity.User;
+import by.home.entity.UserModel;
 import by.home.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,16 +57,21 @@ public class UserController {
     }
 
     @PostMapping("/authorization")
-    public ModelAndView postAuthorizationPage(@Valid User user,BindingResult bindingResult, ModelAndView modelAndView,
+    public ModelAndView postAuthorizationPage(@Valid UserModel userModel, BindingResult bindingResult, ModelAndView modelAndView,
                                               HttpSession httpSession){
         if (bindingResult.hasErrors()) {
             Map<String, String> map = new HashMap<>();
             for (FieldError fieldError : bindingResult.getFieldErrors()) {
-                map.put(fieldError.getField(),fieldError.getDefaultMessage());
+                if(!fieldError.getField().equals("name")) {
+                    map.put(fieldError.getField(), fieldError.getDefaultMessage());
+                }
             }
             modelAndView.addAllObjects(map);
             modelAndView.setViewName("user/authorization");
         }else{
+            User user = new User();
+            user.setLogin(userModel.getLogin());
+            user.setPassword(userModel.getPassword());
             User byLogin = userService.getByLogin(user);
             if (byLogin != null && userService.checkPassword(byLogin, user.getPassword())) {
                 httpSession.setAttribute("user",byLogin);

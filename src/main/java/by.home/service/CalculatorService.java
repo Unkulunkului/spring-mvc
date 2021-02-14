@@ -49,19 +49,10 @@ public class CalculatorService {
                 oper.setResult(diff(oper.getFNum(), oper.getSNum()));
                 break;
         }
-        save(oper);
         return oper;
     }
 
-    public List<Operation> getOperationList(){
-        return historyCalculatorStorage.getHistory();
-    }
-
-    private void save(Operation oper){
-        historyCalculatorStorage.saveOperation(oper);
-    }
-
-    public void clear(){
-        historyCalculatorStorage.clearHistory();
-    }
+//    public List<Operation> getOperationList(){
+//        return historyCalculatorStorage.getHistory();
+//    }
 }

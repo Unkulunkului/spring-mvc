@@ -1,9 +1,16 @@
 package by.home.entity;
 
+import javax.validation.constraints.*;
+
 public class Operation {
 
+    @Max(value = 100)
+    @Min(value = -100)
     private double fNum;
+    @Max(value = 100)
+    @Min(value = -100)
     private double sNum;
+
     private String oper;
     private double result;
 

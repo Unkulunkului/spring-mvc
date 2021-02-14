@@ -14,16 +14,18 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "/history")
+@RequestMapping(path = "calc/history")
 public class HistoryCalculatorController {
     @Autowired
     private CalculatorService calculatorService;
     @GetMapping
     public ModelAndView getHistory(ModelAndView model, HttpSession httpSession){
-        List<Operation> history = calculatorService.getOperationList();
-        if(httpSession.getAttribute("user") != null){
-            httpSession.setAttribute("history", history);
-        }
+//        List<Operation> history = calculatorService.getOperationList();
+//        if(httpSession.getAttribute("user") != null){
+//            httpSession.setAttribute("historyCalc", history);
+//        }
+        model.setViewName("history");
+
         return model;
     }
 }

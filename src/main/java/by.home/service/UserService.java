@@ -19,10 +19,7 @@ public class UserService {
 
     public User getByLogin (User user){
         User byLogin = inMemoryUserStorage.getByLogin(user.getLogin());
-        if(byLogin != null){
-            return byLogin;
-        }
-        return null;
+        return byLogin;
     }
 
     public boolean checkPassword(User user, String password){
