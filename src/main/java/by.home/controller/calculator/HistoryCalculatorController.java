@@ -1,5 +1,6 @@
 package by.home.controller.calculator;
 
+import by.home.entity.CalcHistory;
 import by.home.entity.Operation;
 import by.home.service.CalculatorService;
 import com.sun.org.apache.xpath.internal.operations.Mod;
@@ -20,12 +21,10 @@ public class HistoryCalculatorController {
     private CalculatorService calculatorService;
     @GetMapping
     public ModelAndView getHistory(ModelAndView model, HttpSession httpSession){
-//        List<Operation> history = calculatorService.getOperationList();
-//        if(httpSession.getAttribute("user") != null){
-//            httpSession.setAttribute("historyCalc", history);
-//        }
+        CalcHistory calcHistory = (CalcHistory) httpSession.getAttribute("calcHistory");
+        List<Operation> operationList = calcHistory.getOperationList();
+        model.addObject("calcHistory", operationList);
         model.setViewName("history");
-
         return model;
     }
 }

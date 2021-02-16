@@ -4,7 +4,6 @@ import by.home.entity.User;
 import by.home.entity.UserModel;
 import by.home.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionListener;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +22,8 @@ import java.util.Map;
 @Controller
 @RequestMapping(path = "/user")
 
-public class UserController {
+public class UserController{
+
 
     @Autowired
     private UserService userService;
@@ -81,6 +82,13 @@ public class UserController {
                 modelAndView.setViewName("user/authorization");
             }
         }
+        return modelAndView;
+    }
+
+    @GetMapping("/logout")
+    public ModelAndView getPage(ModelAndView modelAndView, HttpSession httpSession){
+        httpSession.invalidate();
+        modelAndView.setViewName("index");
         return modelAndView;
     }
 

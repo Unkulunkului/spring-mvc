@@ -9,7 +9,7 @@
 <div class="container">
     <h3>History: </h3>
     <p>
-        <c:forEach var="oper" items="${historyCalc}">
+        <c:forEach var="oper" items="${calcHistory}">
     <th>${oper}</th>
     <br>
     </c:forEach>

@@ -14,12 +14,21 @@
 <body>
 <br>
 <s:form modelAttribute="ModelAttributeCalc" action="/calc" method="post">
-    <input type="text" name="fNum" placeholder="First number">
-    <s:errors>${fNum}</s:errors>
-    <input type="text" name="sNum" placeholder="Second number">
-    <input type="text" name="oper" placeholder="Operation">
+    <s:input path="fNum"/>
+    <br>
+    <s:errors path="fNum"/>
+    <br>
+    <s:input path="sNum"/>
+    <br>
+    <s:errors path="sNum"/>
+    <br>
+    <s:input path="oper"/>
+    <br>
     <button>Get result</button>
 </s:form>
+<br>
+<a href="/">Main</a>
+<a href="/calc/history">History</a>
 <%--<form action="/calc" method="post">--%>
 <%--    <div class="row">--%>
 <%--        <div class="col">--%>

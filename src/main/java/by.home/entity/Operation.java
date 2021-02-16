@@ -1,6 +1,8 @@
 package by.home.entity;
 
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Operation {
 

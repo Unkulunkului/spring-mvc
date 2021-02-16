@@ -13,8 +13,15 @@
 </head>
 <body>
 <h1>HELLO, <c:out value="${sessionScope.user.name}" default="guest"/>. IT'S A MAIN PAGE!!!!!</h1>
-<a href="/user/registration">Sing up</a>
-<br>
-<a href="/user/authorization">Sing in</a>
+<c:if test="${user==null}">
+    <a href="/user/registration">Sing up</a>
+    <br>
+    <a href="/user/authorization">Sing in</a>
+    <br>
+</c:if>
+<c:if test="${user != null}">
+    <a href="/calc">Calc</a>
+    <a href="/user/logout">Log out</a>
+</c:if>
 </body>
 </html>
