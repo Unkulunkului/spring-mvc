@@ -10,10 +10,6 @@ public class CalcHistory {
         return new ArrayList<>(operationList);
     }
 
-    public void setOperationList(List<Operation> operationList) {
-        this.operationList = operationList;
-    }
-
     public void add(Operation operation){
         operationList.add(operation);
     }
